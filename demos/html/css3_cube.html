@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>A CSS3 Cube</title>
+    <link rel="stylesheet" type="text/css" href="../css/css3_cube.css">
+  </head>
+  <body>
+    <div class="stage">
+      <div class="controller">
+        <div class="control">
+          <div id="c1" class="btn">show1</div>
+          <div id="c2" class="btn">show2</div>
+          <div id="c3" class="btn">show3</div>
+          <div id="c4" class="btn">show4</div>
+          <div id="c5" class="btn">show5</div>
+          <div id="c6" class="btn">show6</div>
+          <div id="rotate" class="btn">rotate</div>
+        </div>
+        <div class="control-attribute">
+          <div id="attr-hideaxis" class="btn">hide-axis</div>
+          <div id="attr-visibility" class="btn">face-visibility</div>
+        </div>
+        <div class="control-value">
+          <fieldset>
+            <label class="ctr-v">perspective:</label>
+            <input id="attr-perspective" type="input" placeholder="" name="attr-perspective">
+          </fieldset>
+          <fieldset>
+            <label class="ctr-v">perspective-origin:</label>
+            <input id="attr-perspective-origin-x" type="input" placeholder="x" name="attr-perspective-origin-x">
+            <input id="attr-perspective-origin-y" type="input" placeholder="y" name="attr-perspective-origin-y">
+          </fieldset>
+          <fieldset>
+            <label class="ctr-v">rotate-interval:</label>
+            <input id="attr-interval" type="input" placeholder="" name="attr-rotate-interval">
+          </fieldset>
+          <div id="update" class="btn">update</div>
+          <div id="reset" class="btn">reset </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="line-box">
+          <div class="line-x line"></div>
+          <div class="line-y line"></div>
+          <div class="line-z line"></div>
+        </div>
+        <div id="d1" class="side">1</div>
+        <div id="d2" class="side">2</div>
+        <div id="d3" class="side">3</div>
+        <div id="d4" class="side">4</div>
+        <div id="d5" class="side">5</div>
+        <div id="d6" class="side">6</div>
+      </div>
+      <script type="text/javascript" src="../js/css3_cube.js"></script>
+    </div>
+  </body>
+</html>

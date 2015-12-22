@@ -1,0 +1,153 @@
+fieldset {
+  margin: 0;
+  padding: 0;
+}
+.hide {
+  display: none;
+}
+
+.stage {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  background: #eee;
+  perspective: 500px;
+  perspective-origin: 50% 50%;
+
+  // -------------- control btns -----------------
+  .controller {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 500px;
+    .control {
+      position: absolute;
+      left: 0;
+      top: 0;
+      background: rgba(255, 255, 0, 0.5)
+    }
+    .control-attribute {
+      position: absolute;
+      right: 0;
+      top: 0;
+      background: rgba(255, 255, 0, 0.5)
+    }
+    .control-value {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background: rgba(255, 255, 0, 0.5);
+      label {
+        display: inline-block;
+        width: 150px;
+      }
+    }
+  }
+  .btn {
+    min-width: 100px;
+    height: 20px;
+    line-height:20px;
+    margin: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+    text-align: center;
+    &.chosen {
+      background: #f70;
+      border: 1px solid red;
+    }
+  }
+  // --------------------------------------
+
+  .container {
+    position: absolute;
+    transform-style: preserve-3d;
+    transform: translate3d(-50%, -50%, 0);
+    width: 150px;
+    height: 150px;
+    left: 50%;
+    top: 50%;
+    transition: transform 0.5s linear;
+    .line {
+      border: 1px dashed black;
+      position: absolute;
+      transform: translate3d(-50%, -50%, 0);
+      &.line-x {
+        width: 100%;
+        height: 0;
+        left: 50%;
+        top: 50%;
+        &::after {
+          content: 'x';
+        }
+      }
+      &.line-y {
+        width: 0;
+        height: 100%;
+        left: 50%;
+        top: 50%;
+        &::after {
+          content: 'y';
+        }
+      }
+      &.line-z {
+        width: 100%;
+        height: 0;
+        left: 50%;
+        top: 50%;
+        transform: translate3d(-50%, -50%, 0) rotateY(90deg);
+        &::after {
+          content: 'z';
+        }
+      }
+    }
+    .side {
+      &.visibility {
+        backface-visibility: hidden;
+      }
+        position: absolute;
+      left: 0;
+      top: 0;
+      width: 150px;
+      height: 150px;
+      border: 1px solid black;
+      line-height: 150px;
+      text-align: center;
+      font-size: 40px;
+      font-weight: 700;
+      color: white;
+      background: #eee;
+    }
+    &.show1 {transform: translate3d(-50%, -50%, 0); }
+    &.show2 {transform: translate3d(-50%, -50%, 0) rotateX(-90deg);}
+    &.show3 {transform: translate3d(-50%, -50%, 0) rotateY(90deg)}
+    &.show4 {transform: translate3d(-50%, -50%, 0) rotateY(-90deg)}
+    &.show5 {transform: translate3d(-50%, -50%, 0) rotateX(90deg)}
+    &.show6 {transform: translate3d(-50%, -50%, 0) rotateY(180deg);}
+  }
+}
+#d1 {
+  background-color: rgba(255,0,0,.5);
+  transform: translate3d(0 , 0, 75px);
+}
+#d2 {
+  background-color: rgba(255,255,0,.5);
+  transform: rotateX(90deg) translate3d(0 , 0, 75px);
+}
+#d3 {
+  background-color: rgba(0,255,255,.5);
+  transform: rotateY(-90deg) translate3d(0 , 0, 75px);
+}
+#d4 {
+  background-color: rgba(0,255,0,.5);
+  transform: rotateY(90deg) translate3d(0 , 0, 75px);
+}
+#d5 {
+  background-color: rgba(255,0,255,.5);
+  transform: rotateX(-90deg) translate3d(0 , 0, 75px);
+}
+#d6 {
+  background-color: rgba(0,0,255,.5);
+  transform: rotateY(-180deg) translate3d(0 , 0, 75px);
+}

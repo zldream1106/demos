@@ -1,0 +1,43 @@
+doctype html
+html(lang="en")
+  head
+    meta(http-equiv="Content-Type",content="text/html; charset=utf-8")
+    title A CSS3 Cube
+    link(rel='stylesheet', type='text/css', href='../css/css3_cube.css')
+  body
+    .stage
+      .controller
+        .control
+          - var N = 6;
+          - for (var i=1; i <= N; i++) {
+            div.btn(id="c#{i}") show#{i}
+          - }
+          .btn#rotate rotate
+        .control-attribute
+          .btn#attr-hideaxis hide-axis
+          .btn#attr-visibility face-visibility
+        .control-value
+          fieldset
+            label.ctr-v perspective:
+            input#attr-perspective(type="input", placeholder="", name="attr-perspective") 
+          fieldset
+            label.ctr-v perspective-origin:
+            input#attr-perspective-origin-x(type="input", placeholder="x", name="attr-perspective-origin-x")
+            input#attr-perspective-origin-y(type="input", placeholder="y", name="attr-perspective-origin-y")
+          fieldset
+            label.ctr-v rotate-interval:
+            input#attr-interval(type="input", placeholder="", name="attr-rotate-interval")
+          .btn#update update
+          .btn#reset reset 
+      .container
+        .line-box
+          .line-x.line
+          .line-y.line
+          .line-z.line
+        - var N = 6;
+        - for (var i = 1; i <= N; i++) {
+           div.side(id="d#{i}") #{i}
+        - }
+
+      script(type='text/javascript', src='../js/css3_cube.js').
+
