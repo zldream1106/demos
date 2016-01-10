@@ -9,6 +9,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var del = require('del');
 var htmlone = require('gulp-htmlone');
 var babel = require('gulp-babel');
+var webpack = require('gulp-webpack');
 
 var SRC_PATHS = {
   templates: './src/templates/*.jade',
@@ -51,6 +52,29 @@ gulp.task('sass', function () {
 gulp.task('scripts', function() {
   // Minify and copy all JavaScript (except vendor scripts)
   // with sourcemaps all the way down
+  
+  /*
+  return gulp.src(SRC_PATHS.scripts)
+    .pipe(sourcemaps.init())
+    .pipe(webpack({
+      watch: true,
+      module: {
+        loaders: [
+          // { test: /\.css$/, loader: 'style!css' },
+          {
+            test: /\.jade?$/,
+            exclude: /(node_modules|bower_components)/,
+            loader: 'babel',
+            query: {
+              presets: ['es2015'] // ['react', 'es2015']
+            }
+          }
+        ]
+      }
+    }))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest(DEST_PATHS.js));
+    */
   return gulp.src(SRC_PATHS.scripts)
     .pipe(sourcemaps.init())
       // .pipe(uglify())
