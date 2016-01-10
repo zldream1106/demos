@@ -61,16 +61,22 @@ function handleDemo1() {
 function handleDemo2() {
   var CV2 = document.querySelector('#c2');
   var oCV2 = CV2.getContext('2d');
+  var btnClear = document.querySelector('.demo2 .clearc2');
   var num = 1;
   var clock;
+  function reset () {
+    num = 1;
+    clock && window.clearInterval(clock);
+    clearCanvas(CV2, oCV2);
+  }
   document.querySelector('.demo2 .startc2').addEventListener('click', function (e) {
-    clock && clearInterval(clock);
+    reset();
     oCV2.clearRect(0, 0, CV2.width, CV2.height);
 
     oCV2.fillRect(0, 0, 50, 50);
-    clock = setInterval(function () {
+    clock = window.setInterval(function () {
       if ( (++num * 2) > CV2.width + CV2.offsetLeft) {
-        num = 0;
+        reset();
         console.log(2)
       } else {
         console.log(1);
@@ -79,8 +85,10 @@ function handleDemo2() {
       }
     }, 30);
   }, false);
+  btnClear.addEventListener('click', function(e) {
+    reset()
+  });
 }
 
 handleDemo1();
 handleDemo2();
-    
