@@ -12,70 +12,48 @@ var babel = require('gulp-babel');
 var webpack = require('gulp-webpack');
 
 var SRC_PATHS = {
-  templates: './src/templates/*.jade',
-  scripts: ['./src/js/*.js'],
-  style: './src/css/*.scss',
-  images: './src/img/**/*'
-}
-var DEST_PATHS = {
-  html: './demos/html',
-  js: './demos/js',
-  css: './demos/css'
-}
+  templates: './src/templates/**/*.jade',
+  scripts: './src/js/**/*.js',
+  style: './src/css/**/*.scss',
+  images: ['./src/img/**/*.jpg', './src/img/**/*.png']
+};
+
+var DEST_PATHS = './build';
+var DEMO_PATH = './demos';
 
 // Not all tasks need to use streams
 // A gulpfile is just another node program and you can use all packages available on npm 
-gulp.task('clean', function(cb) {
+gulp.task('cleandemos', function() {
   // You can use multiple globbing patterns as you would with `gulp.src` 
-  del(['demos'], cb);
+  del(DEMO_PATH);
 });
- 
+
+gulp.task('cleanbuild', function() {
+  // You can use multiple globbing patterns as you would with `gulp.src` 
+  del(DEST_PATHS);
+});
+
 gulp.task('templates', function () {
-  return gulp.src(SRC_PATHS.templates)
+  return gulp.src(SRC_PATHS.templates, {base: './src'})
     // .pipe(sourcemaps.init())
       .pipe(gulpJade({
         jade: jade,
         pretty: true
       }))
     // .pipe(sourcemaps.write())
-    .pipe(gulp.dest(DEST_PATHS.html));
+    .pipe(gulp.dest(DEST_PATHS));
 });
 
 gulp.task('sass', function () {
-  return gulp.src(SRC_PATHS.style)
+  return gulp.src(SRC_PATHS.style, {base: './src'})
       .pipe(sass({
         // outputStyle: 'compressed'
       }))
-    .pipe(gulp.dest(DEST_PATHS.css));
+    .pipe(gulp.dest(DEST_PATHS));
 });
 
 gulp.task('scripts', function() {
-  // Minify and copy all JavaScript (except vendor scripts)
-  // with sourcemaps all the way down
-  
-  /*
-  return gulp.src(SRC_PATHS.scripts)
-    .pipe(sourcemaps.init())
-    .pipe(webpack({
-      watch: true,
-      module: {
-        loaders: [
-          // { test: /\.css$/, loader: 'style!css' },
-          {
-            test: /\.jade?$/,
-            exclude: /(node_modules|bower_components)/,
-            loader: 'babel',
-            query: {
-              presets: ['es2015'] // ['react', 'es2015']
-            }
-          }
-        ]
-      }
-    }))
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest(DEST_PATHS.js));
-    */
-  return gulp.src(SRC_PATHS.scripts)
+  return gulp.src(SRC_PATHS.scripts, {base: './src'})
     .pipe(sourcemaps.init())
       // .pipe(uglify())
     .pipe(babel({
@@ -84,7 +62,7 @@ gulp.task('scripts', function() {
     }))
     // .pipe(concat('all.js'))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest(DEST_PATHS.js));
+    .pipe(gulp.dest(DEST_PATHS));
 });
 
 // Copy all static images
@@ -98,18 +76,22 @@ gulp.task('images', ['clean'], function() {
 */
 
 // Combine html
-gulp.task('htmlone', function() {
-  return gulp.src(['./*.html'])
+gulp.task('htmlone', ['cleandemos'], function () {
+  return gulp.src(DEST_PATHS + '/templates/*.html')
   .pipe(htmlone({
     jsminify: false,
     cssminify: false
   }))
-  .pipe(gulp.dest('demos/'));
+  .pipe(gulp.dest(DEMO_PATH));
 });
 
 
-// Rerun the task when a file changes 
-gulp.task('default', ['watch']);
-
 // The default task (called when you run `gulp` from cli) 
-gulp.task('watch', ['clean', 'sass', 'scripts', 'templates']);
+gulp.task('build', ['cleanbuild', 'sass', 'scripts', 'templates']);
+
+gulp.task('demos', ['cleandemos', 'htmlone']);
+
+// Rerun the task when a file changes 
+gulp.task('watch', ['sass', 'scripts', 'templates']);
+
+gulp.task('default', ['watch']);
