@@ -10,13 +10,17 @@ var del = require('del');
 var htmlone = require('gulp-htmlone');
 var babel = require('gulp-babel');
 var webpack = require('gulp-webpack');
+var postcss = require('gulp-postcss');
+var autoprefixer = require('autoprefixer');
 
 var SRC_PATHS = {
   templates: './src/templates/**/*.jade',
   scripts: './src/js/**/*.js',
   style: './src/css/**/*.scss',
+  css: './src/css/**/*.css',
   images: ['./src/img/**/*.jpg', './src/img/**/*.png']
 };
+var SRC_PATH = './src/';
 
 var DEST_PATHS = './build';
 var DEMO_PATH = './demos';
@@ -45,10 +49,36 @@ gulp.task('templates', function () {
 });
 
 gulp.task('sass', function () {
-  return gulp.src(SRC_PATHS.style, {base: './src'})
+  return gulp.src(SRC_PATHS.style)
       .pipe(sass({
         // outputStyle: 'compressed'
       }))
+    .pipe(gulp.dest(SRC_PATH + '/css'));
+});
+
+
+gulp.task('css', ['sass'], function () {
+  return gulp.src(SRC_PATHS.css , {base: './src'})
+  /*
+    .pipe(px2rem({
+      threeVersion: false,
+      // XXX: 以下两项根据项目实际情况做修改
+      remUnit: 75,
+      baseDpr: 2,
+      forcePxComment: 'px',
+      keepComment: 'no'
+    }))
+    // px3rem 默认输出的文件带有 .debug 后缀
+    .pipe(rename(function (path) {
+      path.basename = path.basename.replace('.debug', '');
+    }))
+    */
+    .pipe(postcss([
+      // 自动添加厂商前缀
+      autoprefixer({
+        browsers: ['> 1%', 'last 2 versions']
+      })
+    ]))
     .pipe(gulp.dest(DEST_PATHS));
 });
 
@@ -87,11 +117,11 @@ gulp.task('htmlone', ['cleandemos'], function () {
 
 
 // The default task (called when you run `gulp` from cli) 
-gulp.task('build', ['cleanbuild', 'sass', 'scripts', 'templates']);
+gulp.task('build', ['cleanbuild', 'css', 'scripts', 'templates']);
 
 gulp.task('demos', ['cleandemos', 'htmlone']);
 
 // Rerun the task when a file changes 
-gulp.task('watch', ['sass', 'scripts', 'templates']);
+gulp.task('watch', ['css', 'scripts', 'templates']);
 
 gulp.task('default', ['watch']);

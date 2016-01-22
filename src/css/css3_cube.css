@@ -10,10 +10,8 @@ fieldset {
   width: 500px;
   height: 500px;
   background: #eee;
-  -webkit-perspective: 500px;
-          perspective: 500px;
-  -webkit-perspective-origin: 50% 50%;
-          perspective-origin: 50% 50%; }
+  perspective: 500px;
+  perspective-origin: 50% 50%; }
   .stage .controller {
     position: absolute;
     top: 0;
@@ -52,23 +50,17 @@ fieldset {
       border: 1px solid red; }
   .stage .container {
     position: absolute;
-    -webkit-transform-style: preserve-3d;
-            transform-style: preserve-3d;
-    -webkit-transform: translate3d(-50%, -50%, 0);
-            transform: translate3d(-50%, -50%, 0);
+    transform-style: preserve-3d;
+    transform: translate3d(-50%, -50%, 0);
     width: 150px;
     height: 150px;
     left: 50%;
     top: 50%;
-    -webkit-transition: -webkit-transform 0.5s linear;
-    transition: -webkit-transform 0.5s linear;
-    transition: transform 0.5s linear;
-    transition: transform 0.5s linear, -webkit-transform 0.5s linear; }
+    transition: transform 0.5s linear; }
     .stage .container .line {
       border: 1px dashed black;
       position: absolute;
-      -webkit-transform: translate3d(-50%, -50%, 0);
-              transform: translate3d(-50%, -50%, 0); }
+      transform: translate3d(-50%, -50%, 0); }
       .stage .container .line.line-x {
         width: 100%;
         height: 0;
@@ -88,8 +80,7 @@ fieldset {
         height: 0;
         left: 50%;
         top: 50%;
-        -webkit-transform: translate3d(-50%, -50%, 0) rotateY(90deg);
-                transform: translate3d(-50%, -50%, 0) rotateY(90deg); }
+        transform: translate3d(-50%, -50%, 0) rotateY(90deg); }
         .stage .container .line.line-z::after {
           content: 'z'; }
     .stage .container .side {
@@ -106,53 +97,40 @@ fieldset {
       color: white;
       background: #eee; }
       .stage .container .side.visibility {
-        -webkit-backface-visibility: hidden;
-                backface-visibility: hidden; }
+        backface-visibility: hidden; }
     .stage .container.show1 {
-      -webkit-transform: translate3d(-50%, -50%, 0);
-              transform: translate3d(-50%, -50%, 0); }
+      transform: translate3d(-50%, -50%, 0); }
     .stage .container.show2 {
-      -webkit-transform: translate3d(-50%, -50%, 0) rotateX(-90deg);
-              transform: translate3d(-50%, -50%, 0) rotateX(-90deg); }
+      transform: translate3d(-50%, -50%, 0) rotateX(-90deg); }
     .stage .container.show3 {
-      -webkit-transform: translate3d(-50%, -50%, 0) rotateY(90deg);
-              transform: translate3d(-50%, -50%, 0) rotateY(90deg); }
+      transform: translate3d(-50%, -50%, 0) rotateY(90deg); }
     .stage .container.show4 {
-      -webkit-transform: translate3d(-50%, -50%, 0) rotateY(-90deg);
-              transform: translate3d(-50%, -50%, 0) rotateY(-90deg); }
+      transform: translate3d(-50%, -50%, 0) rotateY(-90deg); }
     .stage .container.show5 {
-      -webkit-transform: translate3d(-50%, -50%, 0) rotateX(90deg);
-              transform: translate3d(-50%, -50%, 0) rotateX(90deg); }
+      transform: translate3d(-50%, -50%, 0) rotateX(90deg); }
     .stage .container.show6 {
-      -webkit-transform: translate3d(-50%, -50%, 0) rotateY(180deg);
-              transform: translate3d(-50%, -50%, 0) rotateY(180deg); }
+      transform: translate3d(-50%, -50%, 0) rotateY(180deg); }
 
 #d1 {
   background-color: rgba(255, 0, 0, 0.5);
-  -webkit-transform: translate3d(0, 0, 75px);
-          transform: translate3d(0, 0, 75px); }
+  transform: translate3d(0, 0, 75px); }
 
 #d2 {
   background-color: rgba(255, 255, 0, 0.5);
-  -webkit-transform: rotateX(90deg) translate3d(0, 0, 75px);
-          transform: rotateX(90deg) translate3d(0, 0, 75px); }
+  transform: rotateX(90deg) translate3d(0, 0, 75px); }
 
 #d3 {
   background-color: rgba(0, 255, 255, 0.5);
-  -webkit-transform: rotateY(-90deg) translate3d(0, 0, 75px);
-          transform: rotateY(-90deg) translate3d(0, 0, 75px); }
+  transform: rotateY(-90deg) translate3d(0, 0, 75px); }
 
 #d4 {
   background-color: rgba(0, 255, 0, 0.5);
-  -webkit-transform: rotateY(90deg) translate3d(0, 0, 75px);
-          transform: rotateY(90deg) translate3d(0, 0, 75px); }
+  transform: rotateY(90deg) translate3d(0, 0, 75px); }
 
 #d5 {
   background-color: rgba(255, 0, 255, 0.5);
-  -webkit-transform: rotateX(-90deg) translate3d(0, 0, 75px);
-          transform: rotateX(-90deg) translate3d(0, 0, 75px); }
+  transform: rotateX(-90deg) translate3d(0, 0, 75px); }
 
 #d6 {
   background-color: rgba(0, 0, 255, 0.5);
-  -webkit-transform: rotateY(-180deg) translate3d(0, 0, 75px);
-          transform: rotateY(-180deg) translate3d(0, 0, 75px); }
+  transform: rotateY(-180deg) translate3d(0, 0, 75px); }
