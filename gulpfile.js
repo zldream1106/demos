@@ -12,6 +12,8 @@ var babel = require('gulp-babel');
 var webpack = require('gulp-webpack');
 var postcss = require('gulp-postcss');
 var autoprefixer = require('autoprefixer');
+var rename = require('gulp-rename');
+var px2rem = require('gulp-px3rem');
 
 var SRC_PATHS = {
   templates: './src/templates/**/*.jade',
@@ -59,10 +61,8 @@ gulp.task('sass', function () {
 
 gulp.task('css', ['sass'], function () {
   return gulp.src(SRC_PATHS.css , {base: './src'})
-  /*
     .pipe(px2rem({
       threeVersion: false,
-      // XXX: 以下两项根据项目实际情况做修改
       remUnit: 75,
       baseDpr: 2,
       forcePxComment: 'px',
@@ -72,7 +72,6 @@ gulp.task('css', ['sass'], function () {
     .pipe(rename(function (path) {
       path.basename = path.basename.replace('.debug', '');
     }))
-    */
     .pipe(postcss([
       // 自动添加厂商前缀
       autoprefixer({
@@ -96,8 +95,7 @@ gulp.task('scripts', function() {
 });
 
 // Copy all static images
-/*
-gulp.task('images', ['clean'], function() {
+/* gulp.task('images', ['clean'], function() {
   return gulp.src(paths.images)
     // Pass in options to the task 
     .pipe(imagemin({optimizationLevel: 5}))
@@ -121,7 +119,11 @@ gulp.task('build', ['cleanbuild', 'css', 'scripts', 'templates']);
 
 gulp.task('demos', ['cleandemos', 'htmlone']);
 
-// Rerun the task when a file changes 
-gulp.task('watch', ['css', 'scripts', 'templates']);
+// Rerun the task when a file changes
+gulp.task('watch', ['build'], function () {
+  gulp.watch([SRC_PATHS.style], ['css']);
+  gulp.watch([SRC_PATHS.scripts], ['scripts']);
+  gulp.watch([SRC_PATHS.templates], ['templates']);
+});
 
 gulp.task('default', ['watch']);

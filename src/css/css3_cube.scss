@@ -1,15 +1,18 @@
-fieldset {
-  margin: 0;
-  padding: 0;
+
+
+
+html, body, .stage {
+  height: 100%;
 }
+
 .hide {
   display: none;
 }
 
 .stage {
   position: relative;
-  width: 500px;
-  height: 500px;
+  width: 100%;
+  height: 100%;
   background: #eee;
   perspective: 500px;
   perspective-origin: 50% 50%;
@@ -20,7 +23,7 @@ fieldset {
     top: 0;
     left: 0;
     width: 100%;
-    height: 500px;
+    height: 100%;
     .control {
       position: absolute;
       left: 0;
@@ -41,21 +44,21 @@ fieldset {
       background: rgba(255, 255, 0, 0.5);
       label {
         display: inline-block;
-        width: 150px;
+        width: 300px;
       }
     }
   }
   .btn {
     min-width: 100px;
-    height: 20px;
-    line-height:20px;
-    margin: 5px;
-    border: 1px solid black;
+    height: 30px;
+    line-height:30px;
+    margin: 20px;
+    border: 1px solid black; /*px*/
     border-radius: 5px;
     text-align: center;
     &.chosen {
       background: #f70;
-      border: 1px solid red;
+      border: 1px solid red; /*px*/
     }
   }
   // --------------------------------------
@@ -70,7 +73,7 @@ fieldset {
     top: 50%;
     transition: transform 0.5s linear;
     .line {
-      border: 1px dashed black;
+      border: 1px dashed black; /*px*/
       position: absolute;
       transform: translate3d(-50%, -50%, 0);
       &.line-x {
@@ -111,7 +114,7 @@ fieldset {
       top: 0;
       width: 150px;
       height: 150px;
-      border: 1px solid black;
+      border: 1px solid black; /*px*/
       line-height: 150px;
       text-align: center;
       font-size: 40px;
