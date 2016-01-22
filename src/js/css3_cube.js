@@ -17,7 +17,7 @@ document.querySelector('.control').addEventListener('click', function(e) {
   var previous = document.querySelector('.chosen');
   var btnId;
 
-  if ([...current.classList].includes('control')) return;
+  if (current.classList.contains('control')) return;
   clearInterval(transformTimer);
   update(); // 应用配置
 
@@ -51,7 +51,8 @@ $('.control-attribute').addEventListener('click', function(e) {
 
   switch (current.id) {
     case 'attr-visibility':
-      Array.from(container.querySelectorAll('.side')).forEach(function(el) {
+      //Array.from(container.querySelectorAll('.side')).forEach(function(el) {
+      Array.prototype.forEach.call(container.querySelectorAll('.side'), function(el) {
         el.classList.toggle('visibility');
       });
       break;
@@ -91,7 +92,8 @@ function runRotate(runCnt, interval = 300) {
 function update () {
   var stage = $('.stage');
   var opts = $$('fieldset input');
-  Array.from(opts).forEach(function(opt) {
+  // Array.from(opts).forEach(function(opt) {
+  Array.prototype.forEach.call(opts,function(opt) {
     var value = opt.value;
     var matched = value.match(/\d+/);
     switch (opt.name) {
@@ -120,10 +122,15 @@ $('#reset').addEventListener('click', function (e) {
   var me = e.target;
   var stage = $('.stage');
   var opts = $$('fieldset input');
-  Array.from(opts).forEach( function (opt) {
+  // Array.from(opts).forEach( function (opt) {
+  Array.prototype.forEach.call(opts, function (opt) {
     opt.value='';
   });
-  stage.style.webkitPerspective = '500px';
+  stage.style.webkitPerspective = 500/window.rem + 'rem';
   stage.style.webkitPerspectiveOrigin = '50% 50%';
   container.style.webkitTransition = 'transform 0.3s linear';
 });
+
+window.onerror = function (a,b,c,d) {
+  alert(a,b,c,d)
+}

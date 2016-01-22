@@ -15,6 +15,7 @@ html, body, .stage {
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 99;
     width: 100%;
     height: 100%; }
     .stage .controller .control {
@@ -36,10 +37,12 @@ html, body, .stage {
       .stage .controller .control-value label {
         display: inline-block;
         width: 300px; }
+      .stage .controller .control-value input {
+        height: 30px; }
   .stage .btn {
-    min-width: 100px;
-    height: 30px;
-    line-height: 30px;
+    min-width: 200px;
+    height: 50px;
+    line-height: 50px;
     margin: 20px;
     border: 1px solid black;
     /*px*/
@@ -53,8 +56,8 @@ html, body, .stage {
     position: absolute;
     transform-style: preserve-3d;
     transform: translate3d(-50%, -50%, 0);
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
     left: 50%;
     top: 50%;
     transition: transform 0.5s linear; }
@@ -89,11 +92,11 @@ html, body, .stage {
       position: absolute;
       left: 0;
       top: 0;
-      width: 150px;
-      height: 150px;
+      width: 200px;
+      height: 200px;
       border: 1px solid black;
       /*px*/
-      line-height: 150px;
+      line-height: 200px;
       text-align: center;
       font-size: 40px;
       font-weight: 700;
@@ -116,24 +119,24 @@ html, body, .stage {
 
 #d1 {
   background-color: rgba(255, 0, 0, 0.5);
-  transform: translate3d(0, 0, 75px); }
+  transform: translate3d(0, 0, 100px); }
 
 #d2 {
   background-color: rgba(255, 255, 0, 0.5);
-  transform: rotateX(90deg) translate3d(0, 0, 75px); }
+  transform: rotateX(90deg) translate3d(0, 0, 100px); }
 
 #d3 {
   background-color: rgba(0, 255, 255, 0.5);
-  transform: rotateY(-90deg) translate3d(0, 0, 75px); }
+  transform: rotateY(-90deg) translate3d(0, 0, 100px); }
 
 #d4 {
   background-color: rgba(0, 255, 0, 0.5);
-  transform: rotateY(90deg) translate3d(0, 0, 75px); }
+  transform: rotateY(90deg) translate3d(0, 0, 100px); }
 
 #d5 {
   background-color: rgba(255, 0, 255, 0.5);
-  transform: rotateX(-90deg) translate3d(0, 0, 75px); }
+  transform: rotateX(-90deg) translate3d(0, 0, 100px); }
 
 #d6 {
   background-color: rgba(0, 0, 255, 0.5);
-  transform: rotateY(-180deg) translate3d(0, 0, 75px); }
+  transform: rotateY(-180deg) translate3d(0, 0, 100px); }
